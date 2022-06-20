@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../client.js"></script>
+    </head>
+
+    <body>
+        <h1>Hello World</h1>
+        <p id="demo"></p>
+        <a href="pages/page1.html">page1</a><br/>
+        <a href="pages/page2.html">page2</a><br/>
+        <a href="pages/page3.html">page3</a><br/>
+    </body>
+    <script src="client.js"></script>
+
+    <script>
+        let agent = navigator.userAgent;
+        document.getElementById("demo").innerHTML = "User-agent:<br>" + agent;
+    </script>
+</html>
