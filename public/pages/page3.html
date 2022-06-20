@@ -21,15 +21,22 @@
         src="https://www.facebook.com/tr?id=1198443017647573&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-    
+
     <body>
         <h1>Page3</h1>
         <h2><a href="../index.html">go to home</a></h2>
-        <form>
-            <label for="fname">Access Token</label><br>
-            <input type="text" id="access_token" name="access_token"><br><br>
-        </form> 
-        <button onclick="cartBtn()">Add to cart</button><br/><br/><br/>
-        <button onclick="purchaseBtn()">Purchase</button><br/>
+
+        <button>Add to cart</button><br/><br/><br/>
+        <button onclick="clientTrackPurchase()">Purchase (client)</button><br/><br/>
+        <button onclick="clientTrackCart()">Cart (client)</button><br/><br/><br/>
+        
+        <button onclick="testBtn()">Test Event (server)</button><br/><br/>
+        <button onclick="testBtn2()">Test Event (server without testcode)</button><br/><br/><br/>
+        
+        <button onclick="purchaseBtn()">Purchase (server)</button><br/><br/>
+        <button onclick="purchaseBtn2()">Purchase (server without testcode)</button><br/><br/><br/>
+
+        <button onclick="cartBtn()">Cart Event (server)</button><br/><br/>
+        <button onclick="cartBtn2()">Cart Event (server without testcode)</button><br/><br/><br/>
     </body>
 </html>
