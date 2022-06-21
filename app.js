@@ -1,7 +1,13 @@
 'use strict';
 
 const express = require('express');
+const { AdCreativeTemplateURLSpec } = require('facebook-nodejs-business-sdk');
 const app = express();
+
+// 아래부터 세줄 json데이터 참조를 위해 필요
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var metaConversionAPI = require('./metaConversion.js');
 
@@ -52,46 +58,18 @@ var conversionData2 = {
     ]
 };
 
-app.post('/testClick', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'TestEvent', conversionData);
-});
+app.post('/commonRequest', (req, res) => {
+  const click = {clickTime: new Date()};
+  console.log(click);
+  console.log(req.body);
+  
+  if (req.body.test_code === 'true') {
+    metaConversionAPI.send1(req.body.token, req, req.body.event_name, conversionData);
+  } else {
+    metaConversionAPI.send1(req.body.token, req, req.body.event_name, conversionData2);
+  }
 
-app.post('/testClick2', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'TestEvent', conversionData2);
-});
-
-app.post('/cartClick', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'Cart', conversionData);
-});
-
-app.post('/cartClick2', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'Cart', conversionData2);
-});
-
-app.post('/purchaseClick', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'Purchase', conversionData);
-});
-
-app.post('/purchaseClick2', (req, res) => {
-    const click = {clickTime: new Date()};
-    console.log(click);
-    res.sendStatus(201);
-    metaConversionAPI.send1(req, 'Purchase', conversionData2);
+  res.sendStatus(200);
 });
 
 app.listen(3000, () => console.log('node app server start'));

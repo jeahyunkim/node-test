@@ -8,40 +8,48 @@ function clientTrackCart() {
     fbq('track', 'Cart', {currency: "USD", value: 40.00});
 }
 
-function serverRequest(postPath) {
-    fetch(postPath, {method: 'POST'})
-        .then(function(response) {
-            if(response.ok) {
-            console.log('Request successed.');
-            return;
-            }
-            throw new Error('Request failed.');
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
+function conversionAPI(eventName, testCodeExist) {
+    var accessToken = document.getElementById("access_token").value;
+    $.ajax({
+        type: "POST",
+        url: '/commonRequest',
+        data: {
+            token : accessToken,
+            event_name: eventName,
+            test_code: testCodeExist
+        },
+        // contentType: 'application/json',
+        beforeSend: function(xhr) {
+
+        }, success: function(data){
+            console.log(data);
+            alert(data);
+        }, error : function(err) {
+            alert("failed : " + err);
+        }
+    })
 }
 
 function cartBtn() {
-    serverRequest('/cartClick');
+    conversionAPI('Cart', true);
 }
 
 function cartBtn2() {
-    serverRequest('/cartClick2');
+    conversionAPI('Cart', false);
 }
 
 function testBtn() {
-    serverRequest('/testClick');
+    conversionAPI('TestEvent', true);
 }
 
 function testBtn2() {
-    serverRequest('/testClick2');
+    conversionAPI('TestEvent', false);
 }
 
 function purchaseBtn() {
-    serverRequest('/purchaseClick');
+    conversionAPI('Purchase', true);
 }
 
 function purchaseBtn2() {
-    serverRequest('/purchaseClick2');
+    conversionAPI('Purchase', false);
 }
