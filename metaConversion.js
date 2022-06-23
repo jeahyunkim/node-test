@@ -15,6 +15,7 @@ module.exports = {
                 conversionData
             )
             .then(res => {
+                console.log(res);
                 console.log(`statusCode: ${res.status}`);
             })
             .catch(error => {

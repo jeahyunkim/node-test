@@ -64,6 +64,7 @@ app.post('/commonRequest', (req, res) => {
   console.log(req.body);
   
   if (req.body.test_code === 'true') {
+    conversionData['test_event_code'] = req.body.test_event_code;
     metaConversionAPI.send1(req.body.token, req, req.body.event_name, conversionData);
   } else {
     metaConversionAPI.send1(req.body.token, req, req.body.event_name, conversionData2);

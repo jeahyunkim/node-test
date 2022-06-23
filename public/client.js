@@ -10,12 +10,14 @@ function clientTrackCart() {
 
 function conversionAPI(eventName, testCodeExist) {
     var accessToken = document.getElementById("access_token").value;
+    var testEventCode = document.getElementById("test_event_code").value;
     $.ajax({
         type: "POST",
         url: '/commonRequest',
         data: {
             token : accessToken,
             event_name: eventName,
+            test_event_code: testEventCode,
             test_code: testCodeExist
         },
         // contentType: 'application/json',
